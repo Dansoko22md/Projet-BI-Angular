@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Remove outline during input focus */
+input:focus {
+  outline: none;
+}
+
+/* Base Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@keyframes waterDrop {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes smokeRise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes particleMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(var(--move-x, 0), var(--move-y, 0));
+  }
+}
+
+/* Animation Classes */
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.6s ease-out forwards;
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.animate-title {
+  animation: slideDown 0.8s ease-out forwards;
+}
+
+.animate-content {
+  animation: fadeIn 1s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* Delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* Modern Feature Cards */
+.feature-card {
+  @apply flex items-start space-x-4 p-6 bg-white/5 rounded-2xl backdrop-blur-sm transition-all duration-300;
+  transform: perspective(1000px) translateZ(0);
+}
+
+.feature-card:hover {
+  @apply bg-white/10;
+  transform: perspective(1000px) translateZ(20px);
+}
+
+.feature-icon-wrapper {
+  @apply p-3 rounded-xl bg-emerald-500/20 text-emerald-300 transition-all duration-300;
+}
+
+.feature-card:hover .feature-icon-wrapper {
+  @apply bg-emerald-500/30 text-emerald-200;
+}
+
+.feature-content {
+  @apply flex-1;
+}
+
+/* Particles Background */
+.particles-container {
+  @apply absolute inset-0;
+  overflow: hidden;
+}
+
+/* Water Drops */
+.particles-container::before,
+.particles-container::after {
+  content: '';
+  @apply absolute rounded-full bg-emerald-300/30;
+  width: 20px;
+  height: 20px;
+  filter: blur(2px);
+  animation: waterDrop 3s infinite;
+}
+
+.particles-container::before {
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.particles-container::after {
+  bottom: 30%;
+  right: 40%;
+  animation-delay: 1.5s;
+}
+
+/* Smoke Effects */
+.particles-container .smoke {
+  @apply absolute w-20 h-20 rounded-full;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: smokeRise 8s infinite;
+}
+
+.particles-container .smoke:nth-child(1) {
+  left: 20%;
+  bottom: 0;
+  animation-delay: 0s;
+}
+
+.particles-container .smoke:nth-child(2) {
+  left: 50%;
+  bottom: 0;
+  animation-delay: 2s;
+}
+
+.particles-container .smoke:nth-child(3) {
+  left: 80%;
+  bottom: 0;
+  animation-delay: 4s;
+}
+
+.gradient-overlay {
+  @apply absolute inset-0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(6, 78, 59, 0.8) 100%);
+}
+
+/* Input Fields */
+.input-field {
+  @apply w-full px-4 py-3 rounded-lg bg-white border border-gray-200 transition-all duration-200;
+}
+
+/* Social Buttons */
+.social-button {
+  @apply flex items-center justify-center w-12 h-12 rounded-full border border-gray-200 transition-all duration-200;
+}
